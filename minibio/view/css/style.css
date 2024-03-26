@@ -1,0 +1,169 @@
+@import url('https://fonts.cdnfonts.com/css/bahnschrift');  
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+
+
+:root{
+    --var-corBranco: #fff;
+    --var-corCinza: #606060;
+    --color-bg: #01080E;
+    --color-mg: #14213d;
+    --color-title: #fca311;
+    --color-subtitle: #e5e5e5;
+    --color-text: #FFF;
+    --gradient-title: linear-gradient(90deg, #9442FE 0%, #3378FF 100%);
+}
+
+.ks-favicon{
+    border-radius: 50px;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    font-family: 'Bahnschrift', sans-serif;
+    font-size: 12pt;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+h1{
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+
+h1.title{
+    background: var(--gradient-title);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--color-title); 
+}
+
+h2{
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 400;
+    font-size: 1.3rem;
+    color: var(--color-title);
+    margin-bottom: 20px;
+}
+
+a, a:link, a:active, a:visited{
+    color: var(--color-text);
+}
+
+.ks-1{
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.ks-minicontainer{
+    width: 60%;
+    border-radius: 20px;
+    box-shadow: 5px 12px 12px rgba(50,50,50,.1);
+    margin: auto;
+    text-align: center;
+    padding: 5%;
+}
+
+.ks-miniflexmenu{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+}
+
+.ks-btn-title{
+    width: 300px;
+    margin: 2%;
+    padding: 15px;
+    background: var(--color-subtitle);
+    box-shadow: 5px 12px 12px rgba(0,0,0,.4);
+    border: none;
+    border-radius: 25px;
+    color: var(--color-bg);
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+/* .ks-btn-title.ks-displaytemp p::before{
+    content: "Portifólio ";
+} */
+
+.ks-btn-title.ks-displaytemp p:hover::after{
+    content: "em breve";
+}
+
+.ks-btn-title.ks-displaytemp2{
+    visibility: hidden;
+}
+
+.ks-btn-title.ks-displaytemp2:hover{
+    visibility: visible;
+    content: "em breve";
+}
+
+.ks-btn-title:hover{
+    transform: scale(1.1);
+    transition: all 1s;
+    background: var(--gradient-title);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--color-title);
+}
+
+.ks-miniflexsocial {
+    margin-top: 20px;
+    padding: 15px;
+}
+
+.ks-miniflexsocial a i.bi{
+    font-size: 2rem;
+    margin: 15px;
+}
+
+.ks-miniflexsocial a i.bi:hover{
+    z-index: 99;
+    background: var(--gradient-title);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--color-title);
+}
+
+@media(max-width: 415px){
+    .ks-1{
+        margin: auto;
+        position: relative;
+        top: 50%;
+        transform: translateY(25%);
+    }
+
+    .ks-minicontainer{
+        width: 90%;
+        height: 80%;
+    }
+
+    h1.title{
+        font-size: 2rem;
+    }
+
+    h2{
+        font-size: 1.2rem;
+    }
+}
+
+/*Google Forms*/
+
+.googleForms{
+    width: 100%;
+    height: auto;
+}
+
+.xpWfed{
+    display: none !important;
+}
