@@ -82,11 +82,12 @@ a, a:link, a:active, a:visited{
     padding: 15px;
     background: var(--color-subtitle);
     box-shadow: 5px 12px 12px rgba(0,0,0,.4);
-    border: none;
+    border: 3px solid var(--color-subtitle);
     border-radius: 25px;
     color: var(--color-bg);
     font-size: 1.3rem;
     cursor: pointer;
+    transition: all 1s;
 }
 
 /* .ks-btn-title.ks-displaytemp p::before{
@@ -94,7 +95,7 @@ a, a:link, a:active, a:visited{
 } */
 
 .ks-btn-title.ks-displaytemp p:hover::after{
-    content: "em breve";
+    content: " em breve";
 }
 
 .ks-btn-title.ks-displaytemp2{
@@ -109,7 +110,8 @@ a, a:link, a:active, a:visited{
 .ks-btn-title:hover{
     transform: scale(1.1);
     transition: all 1s;
-    background: var(--gradient-title);
+    background: var(--gradient-title, --color-mg);
+    border: 3px solid var(--color-mg);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
