@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio de Raças e Classes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            display: inline-block;
+            text-align: left;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .classe-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .classe-list li {
+            background-color: #f0f0f0;
+            margin: 5px 0;
+            padding: 5px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Informações da Raça e Classe</h1>
+        <button onclick="sortearRaca()">Sortear Raça</button>
+        <button onclick="sortearClasse()">Sortear Classe</button>
+        <div id="info">
+            <p><strong>Facção:</strong> <span id="faccao"></span></p>
+            <p><strong>Raça:</strong> <span id="raca"></span></p>
+            <p><strong>Classes:</strong></p>
+            <ul id="classes" class="classe-list"></ul>
+            <p><strong>Classe Sorteada:</strong> <span id="classe-sorteada"></span></p>
+            <img id="imagem" src="" alt="Imagem da Raça" width="200">
+        </div>
+    </div>
+    
+    <script src="/wow/script.js"></script>
+</body>
+</html>
