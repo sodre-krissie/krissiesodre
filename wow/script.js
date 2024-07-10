@@ -1,7 +1,7 @@
 let racas = [];
 let racaAtual = null;
 
-fetch('classes.json')
+fetch('/wow/classes.json')
     .then(response => response.json())
     .then(data => {
         racas = data;
