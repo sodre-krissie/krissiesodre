@@ -1,43 +1,42 @@
 let racas = [];
-let racaAtual = null;
+let classes = {};
+let racaSorteada = null;
+let classeSorteada = null;
 
-fetch('/wow/classes.json')
+fetch('classes.json')
     .then(response => response.json())
     .then(data => {
-        racas = data;
+        classes = data.classes;
+        racas = data.racas;
     })
     .catch(error => {
         console.error('Erro ao carregar o JSON:', error);
     });
 
-function sortearRaca() {
-    if (racas.length === 0) {
-        console.error('O JSON ainda não foi carregado.');
-        return;
-    }
-    
-    racaAtual = racas[Math.floor(Math.random() * racas.length)];
-    document.getElementById('faccao').innerText = racaAtual.faccao;
-    document.getElementById('raca').innerText = racaAtual.raca;
-    
-    const classesList = document.getElementById('classes');
-    classesList.innerHTML = '';
-    racaAtual.classe.forEach(classe => {
-        const li = document.createElement('li');
-        li.innerText = classe;
-        classesList.appendChild(li);
-    });
-    
-    document.getElementById('imagem').src = racaAtual.imagem;
-    document.getElementById('classe-sorteada').innerText = ''; // Limpa a classe sorteada anterior
-}
+document.getElementById('sortearRaca').addEventListener('click', function() {
+    const randomIndex = Math.floor(Math.random() * racas.length);
+    racaSorteada = racas[randomIndex];
+    classeSorteada = null; // Resetar a classe sorteada
+    document.getElementById('resultado').innerHTML = `
+         <h1>Sua aventura será ao lado da ${racaSorteada.faccao}</h1>
+        <h2>${racaSorteada.raca}</h2>
+        <img src="${racaSorteada.imagem}" alt="${racaSorteada.raca}">
+    `;
+    document.getElementById('sortearClasse').disabled = false;
+});
 
-function sortearClasse() {
-    if (!racaAtual) {
-        console.error('Nenhuma raça foi sorteada.');
-        return;
+document.getElementById('sortearClasse').addEventListener('click', function() {
+    if (racaSorteada) {
+        const randomIndex = Math.floor(Math.random() * racaSorteada.classe.length);
+        const classeNome = racaSorteada.classe[randomIndex];
+        const classeImagem = classes[classeNome];
+        document.getElementById('resultado2').innerHTML += `
+            <div class="class-container">
+                <div class="class-item">
+                    <img src="${classeImagem}" alt="${classeNome}">
+                    <h3>Sua função será: ${classeNome}</h3>
+                </div>
+            </div>
+        `;
     }
-
-    const classeSorteada = racaAtual.classe[Math.floor(Math.random() * racaAtual.classe.length)];
-    document.getElementById('classe-sorteada').innerText = classeSorteada;
-}
+});
