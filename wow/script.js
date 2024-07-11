@@ -3,7 +3,7 @@ let classes = {};
 let racaSorteada = null;
 let classeSorteada = null;
 
-fetch('classes.json')
+fetch('/wow/classes.json')
     .then(response => response.json())
     .then(data => {
         classes = data.classes;
