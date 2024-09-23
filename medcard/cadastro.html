@@ -15,20 +15,39 @@
       <!-- Favicon inicia -->
       <link rel="shortcut icon" type="image/x-icon" href="/medcard/assets/img/simbolo-3.png" class="ks-favicon"/>
    </head>
-<body>
-   <h1>Cadastro</h1>
-   <main>
-      <span>Selecione a disciplina</span>
-      <select>
-         <option value="1">Nutri</option>
-         <option value="0">Outro</option>
-      </select>
-      <span>Cadastrar disciplina</span>
-      <input type="text" class="" name="" value="" placeholder="Digite o nome da disciplia" disabled>
-      <span>Cadastrar Pergunta</span>
-      <input type="text" class="" name="" value="" placeholder="Digite a pergunta" maxlength="100">
-      <span>Cadastrar Resposta</span>
-      <input type="text" class="" name="" value="" placeholder="Digite a resposta" maxlength="100">
-   </main>
-</body>
+   <body>
+      <h1>Cadastro</h1>
+      <form action="cadastroCard.php" method="POST">
+         <span>Selecione a disciplina</span>
+         <select name="disciplina" id="disciplina">
+            <option value="Nutrição">Nutrição</option>
+            <option value="0">Outro</option>
+         </select>
+
+         <span>Cadastrar disciplina</span>
+         <input type="text" name="nova_disciplina" placeholder="Digite o nome da disciplina" id="nova_disciplina" disabled>
+
+         <span>Cadastrar Pergunta</span>
+         <input type="text" name="pergunta" placeholder="Digite a pergunta" maxlength="100">
+
+         <span>Cadastrar Resposta</span>
+         <input type="text" name="resposta" placeholder="Digite a resposta" maxlength="100">
+
+         <button type="reset">Cancelar</button>
+         <button type="submit">Cadastrar</button>
+      </form>
+
+      <script>
+         // Habilita o campo de nova disciplina quando "Outro" é selecionado
+         document.getElementById('disciplina').addEventListener('change', function() {
+            var novaDisciplinaInput = document.getElementById('nova_disciplina');
+            if (this.value == '0') {
+               novaDisciplinaInput.disabled = false;
+            } else {
+               novaDisciplinaInput.disabled = true;
+               novaDisciplinaInput.value = '';
+            }
+         });
+      </script>
+   </body>
 </html>
