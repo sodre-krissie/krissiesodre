@@ -1,36 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Lista Completa</title>
-   <link rel="shortcut icon" type="image/x-icon" href="/medcard/assets/img/simbolo-3.png"/>
-   <link rel="stylesheet" type="text/css" href="/view/css/reset.css">
-   <link rel="stylesheet" type="text/css" href="/medcard/assets/css/style.css">
-
-   <script src="/medcard/assets/js/listaCompleta.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Completa</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/medcard/assets/img/simbolo-3.png"/>
+    <link rel="stylesheet" type="text/css" href="/view/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/medcard/assets/css/style.css">
+    <script src="/medcard/assets/js/listaCompleta.js" defer></script>
 </head>
 <body>
-   <h1>Dados Cadastrados</h1>
-   <ul id="lista-dados"></ul>
-
-   <!-- <script>
-       async function carregarDados() {
-           const response = await fetch('/api/getData');
-           const dados = await response.json();
-
-           const lista = document.getElementById('lista-dados');
-           lista.innerHTML = ''; // Limpa a lista antes de adicionar novos dados
-
-           dados.forEach(dado => {
-               const item = document.createElement('li');
-               item.textContent = `Disciplina: ${dado.disciplina}, Pergunta: ${dado.pergunta}, Resposta: ${dado.resposta}`;
-               lista.appendChild(item);
-           });
-       }
-
-       // Carregar os dados quando a página for carregada
-       window.onload = carregarDados;
-   </script> -->
+    <h1>Lista de Dados Cadastrados</h1>
+    <ul id="lista-dados"><li>Nenhum dado cadastrado.</li></ul>
 </body>
 </html>

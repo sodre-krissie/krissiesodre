@@ -1,12 +1,13 @@
 // /api/getData.js
 let dados = []; // Simulação de um banco de dados em memória
 
-// Rota para salvar dados
-export default function saveDataHandler(req, res) {
+// Rota para salvar dados e recuperar dados
+export default function handler(req, res) {
     if (req.method === 'POST') {
-        const { disciplina, nova_disciplina, pergunta, resposta } = req.body;
+        const { disciplina, pergunta, resposta } = req.body; // Remove nova_disciplina
+        // Adiciona os dados ao array
         dados.push({
-            disciplina: nova_disciplina || disciplina,
+            disciplina,
             pergunta,
             resposta
         });
