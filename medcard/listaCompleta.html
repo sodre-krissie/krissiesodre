@@ -43,5 +43,20 @@
             </tr>
         </tbody>
     </table>
+    <!-- Modal para edição -->
+    <div id="editModal" style="display:none;">
+        <h2>Editar Item</h2>
+        <form id="edit-form">
+            <input type="hidden" id="edit-index" />
+            <span>Disciplina</span>
+            <input type="text" id="edit-disciplina" required />
+            <span>Pergunta</span>
+            <input type="text" id="edit-pergunta" required />
+            <span>Resposta</span>
+            <input type="text" id="edit-resposta" required />
+            <button type="submit">Salvar</button>
+            <button type="button" id="close-modal">Cancelar</button>
+        </form>
+    </div>
 </body>
 </html>

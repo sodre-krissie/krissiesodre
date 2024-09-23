@@ -1,43 +1,22 @@
-// // /medcard/assets/js/listaCompleta.js
-// document.addEventListener('DOMContentLoaded', async () => {
-//    const listaDados = document.getElementById('lista-dados');
-
-//    try {
-//        const response = await fetch('/api/getData'); // Faz uma requisição GET para a API
-//        if (!response.ok) throw new Error('Erro ao buscar os dados.');
-
-//        const dados = await response.json();
-
-//        listaDados.innerHTML = ''; // Limpa a lista antes de adicionar novos dados
-
-//        if (dados.length > 0) {
-//            dados.forEach(item => {
-//                const li = document.createElement('li');
-//                li.textContent = `Disciplina: ${item.disciplina}, Pergunta: ${item.pergunta}, Resposta: ${item.resposta}`;
-//                listaDados.appendChild(li);
-//            });
-//        } else {
-//            listaDados.innerHTML = '<li>Nenhum dado cadastrado.</li>'; // Mensagem caso não haja dados
-//        }
-//    } catch (error) {
-//        console.error('Erro:', error);
-//        listaDados.innerHTML = '<li>Erro ao carregar os dados.</li>'; // Mensagem de erro
-//    }
-// });
-
 // /medcard/assets/js/listaCompleta.js
 document.addEventListener('DOMContentLoaded', async () => {
    const listaDados = document.getElementById('lista-dados');
+   const editModal = document.getElementById('editModal');
+   const editForm = document.getElementById('edit-form');
+   const editIndex = document.getElementById('edit-index');
+   const editDisciplina = document.getElementById('edit-disciplina');
+   const editPergunta = document.getElementById('edit-pergunta');
+   const editResposta = document.getElementById('edit-resposta');
 
    // Função para carregar dados na tabela
    async function loadData() {
        try {
-           const response = await fetch('/api/getData'); // Faz uma requisição GET para a API
+           const response = await fetch('/api/getData');
            if (!response.ok) throw new Error('Erro ao buscar os dados.');
 
            const dados = await response.json();
 
-           listaDados.innerHTML = ''; // Limpa a tabela antes de adicionar novos dados
+           listaDados.innerHTML = '';
 
            if (dados.length > 0) {
                dados.forEach((item, index) => {
@@ -48,6 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                        <td>${item.pergunta}</td>
                        <td>${item.resposta}</td>
                        <td>
+                           <button class="btn-edit" data-index="${index}">Editar</button>
                            <button class="btn-delete" data-index="${index}">Excluir</button>
                        </td>
                    `;
@@ -55,40 +35,72 @@ document.addEventListener('DOMContentLoaded', async () => {
                    listaDados.appendChild(tr);
                });
            } else {
-               listaDados.innerHTML = '<tr><td colspan="4">Nenhum dado cadastrado.</td></tr>'; // Mensagem caso não haja dados
+               listaDados.innerHTML = '<tr><td colspan="4">Nenhum dado cadastrado.</td></tr>';
            }
        } catch (error) {
            console.error('Erro:', error);
-           listaDados.innerHTML = '<tr><td colspan="4">Erro ao carregar os dados.</td></tr>'; // Mensagem de erro
+           listaDados.innerHTML = '<tr><td colspan="4">Erro ao carregar os dados.</td></tr>';
        }
    }
 
-   // Função para excluir um dado
-   async function deleteData(index) {
+   // Função para editar um dado
+   async function editData(index) {
+       const response = await fetch('/api/getData');
+       const dados = await response.json();
+       const item = dados[index];
+
+       editIndex.value = index;
+       editDisciplina.value = item.disciplina;
+       editPergunta.value = item.pergunta;
+       editResposta.value = item.resposta;
+
+       editModal.style.display = 'block'; // Exibe o modal de edição
+   }
+
+   // Função para salvar a edição
+   editForm.addEventListener('submit', async (event) => {
+       event.preventDefault();
+       
+       const index = editIndex.value;
+       const updatedData = {
+           disciplina: editDisciplina.value,
+           pergunta: editPergunta.value,
+           resposta: editResposta.value,
+       };
+
        try {
-           const response = await fetch('/api/getData', {
-               method: 'DELETE',
+           const response = await fetch(`/api/getData`, {
+               method: 'PUT',
                headers: {
                    'Content-Type': 'application/json',
                },
-               body: JSON.stringify({ index }), // Envia o índice do item a ser excluído
+               body: JSON.stringify({ index, updatedData }), // Envia os dados atualizados
            });
 
-           if (!response.ok) throw new Error('Erro ao excluir os dados.');
+           if (!response.ok) throw new Error('Erro ao atualizar os dados.');
 
-           await loadData(); // Recarrega os dados após a exclusão
+           editModal.style.display = 'none'; // Fecha o modal
+           await loadData(); // Recarrega os dados
        } catch (error) {
            console.error('Erro:', error);
        }
-   }
+   });
 
-   // Adiciona evento de clique para os botões de exclusão
+   // Adiciona evento de clique para os botões de exclusão e edição
    listaDados.addEventListener('click', (event) => {
        if (event.target.classList.contains('btn-delete')) {
-           const index = event.target.dataset.index; // Obtém o índice do botão clicado
-           deleteData(index); // Chama a função de exclusão
+           const index = event.target.dataset.index;
+           deleteData(index);
+       } else if (event.target.classList.contains('btn-edit')) {
+           const index = event.target.dataset.index;
+           editData(index);
        }
    });
 
-   loadData(); // Carrega os dados inicialmente
+   // Fecha o modal ao clicar no botão "Cancelar"
+   document.getElementById('close-modal').addEventListener('click', () => {
+       editModal.style.display = 'none';
+   });
+
+   loadData();
 });
