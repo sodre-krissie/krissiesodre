@@ -17,7 +17,7 @@
    </head>
    <body>
       <h1>Cadastro</h1>
-      <form action="cadastroCard.php" method="POST">
+      <form id="cadastro-form">
          <span>Selecione a disciplina</span>
          <select name="disciplina" id="disciplina">
             <option value="Nutrição">Nutrição</option>
@@ -36,18 +36,5 @@
          <button type="reset">Cancelar</button>
          <button type="submit">Cadastrar</button>
       </form>
-
-      <script>
-         // Habilita o campo de nova disciplina quando "Outro" é selecionado
-         document.getElementById('disciplina').addEventListener('change', function() {
-            var novaDisciplinaInput = document.getElementById('nova_disciplina');
-            if (this.value == '0') {
-               novaDisciplinaInput.disabled = false;
-            } else {
-               novaDisciplinaInput.disabled = true;
-               novaDisciplinaInput.value = '';
-            }
-         });
-      </script>
    </body>
 </html>
