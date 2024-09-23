@@ -1,15 +1,15 @@
 export default function handler(req, res) {
    if (req.method === 'POST') {
       const { disciplina, pergunta, resposta } = req.body;
-      
-      // Aqui você pode conectar a um banco de dados ou simplesmente armazenar os dados
-      // Por enquanto, vamos apenas enviar de volta o que foi recebido
 
+      // Aqui você pode processar os dados recebidos (por exemplo, salvá-los em um banco de dados)
       console.log('Dados recebidos:', { disciplina, pergunta, resposta });
-      
+
       // Resposta de sucesso
-      res.status(200).json({ message: 'Dados recebidos com sucesso!', data: { disciplina, pergunta, resposta } });
+      res.status(200).json({ message: 'Dados recebidos com sucesso!' });
    } else {
-      res.status(405).json({ message: 'Método não permitido' });
+      // Se o método não for POST, retorna erro 405 (Método Não Permitido)
+      res.setHeader('Allow', ['POST']); // Define os métodos permitidos
+      res.status(405).end(`Método ${req.method} não permitido`);
    }
 }
