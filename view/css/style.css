@@ -54,17 +54,17 @@ a, a:link, a:active, a:visited{
 }
 
 .ks-1{
-    padding-top: 5%;
-    padding-bottom: 5%;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .ks-minicontainer{
     width: 60%;
-    border-radius: 20px;
-    box-shadow: 5px 12px 12px rgba(50,50,50,.1);
-    margin: auto;
     text-align: center;
-    padding: 5%;
 }
 
 .ks-miniflexmenu{
