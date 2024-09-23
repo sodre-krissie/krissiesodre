@@ -1,26 +1,36 @@
-// /assets/js/cadastroCard.js
-document.getElementById('cadastro-form').addEventListener('submit', async (event) => {
-   event.preventDefault(); // Impede o envio padrão do formulário
+// /medcard/assets/js/cadastroCard.js
+document.addEventListener('DOMContentLoaded', () => {
+   const form = document.getElementById('cadastro-form');
 
-   const formData = new FormData(event.target);
-   const data = Object.fromEntries(formData.entries());
+   form.addEventListener('submit', async (event) => {
+       event.preventDefault(); // Impede o comportamento padrão do formulário
 
-   try {
-       const response = await fetch('/api/saveData', {
-           method: 'POST',
-           headers: {
-               'Content-Type': 'application/json',
-           },
-           body: JSON.stringify(data),
-       });
+       const formData = new FormData(form);
+       const data = {
+           disciplina: formData.get('disciplina'),
+           nova_disciplina: formData.get('nova_disciplina'),
+           pergunta: formData.get('pergunta'),
+           resposta: formData.get('resposta')
+       };
 
-       if (!response.ok) {
-           throw new Error('Erro ao cadastrar dados: ' + response.statusText);
+       try {
+           const response = await fetch('/api/saveData', {
+               method: 'POST',
+               headers: {
+                   'Content-Type': 'application/json',
+               },
+               body: JSON.stringify(data),
+           });
+
+           if (response.ok) {
+               alert('Dados cadastrados com sucesso!');
+               form.reset(); // Reseta o formulário após o sucesso
+           } else {
+               alert('Erro ao cadastrar os dados.');
+           }
+       } catch (error) {
+           console.error('Erro:', error);
+           alert('Erro na requisição. Veja o console para mais detalhes.');
        }
-
-       alert('Dados cadastrados com sucesso!');
-       event.target.reset(); // Limpa o formulário após o envio
-   } catch (error) {
-       console.error('Erro:', error);
-   }
+   });
 });
