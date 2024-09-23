@@ -9,6 +9,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       const dados = await response.json();
       const lista = document.getElementById('lista-cadastrados');
 
+      // Verifique se dados não estão vazios
+      if (dados.length === 0) {
+         const li = document.createElement('li');
+         li.textContent = 'Nenhum dado cadastrado.';
+         lista.appendChild(li);
+         return;
+      }
+
       dados.forEach(item => {
          const li = document.createElement('li');
          li.textContent = `Disciplina: ${item.disciplina}, Pergunta: ${item.pergunta}, Resposta: ${item.resposta}`;
