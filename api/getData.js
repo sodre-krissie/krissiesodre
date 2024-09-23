@@ -1,5 +1,5 @@
 // /api/getData.js
-const dados = []; // Simulação de um banco de dados em memória
+let dados = []; // Simulação de um banco de dados em memória
 
 export default function handler(req, res) {
    if (req.method === 'GET') {
