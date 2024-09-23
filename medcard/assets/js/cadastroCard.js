@@ -25,7 +25,7 @@
                };
 
                try {
-                  const response = await fetch('/medcard/api/saveData', {
+                  const response = await fetch('/medcard/api/saveData.js', {
                      method: 'POST',
                      headers: {
                         'Content-Type': 'application/json'
