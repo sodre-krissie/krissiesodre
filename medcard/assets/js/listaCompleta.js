@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
        const dados = await response.json();
 
-       // Verifica se há dados e os adiciona à lista
        if (dados.length > 0) {
            dados.forEach(item => {
                const li = document.createElement('li');

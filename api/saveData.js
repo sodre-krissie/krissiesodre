@@ -11,11 +11,12 @@ export default function handler(req, res) {
             pergunta,
             resposta
         });
-
-        console.log('Dados recebidos:', { disciplina, nova_disciplina, pergunta, resposta });
+        console.log('Dados recebidos:', { disciplina: nova_disciplina || disciplina, pergunta, resposta }); // Debug
         res.status(201).json({ message: 'Dados cadastrados com sucesso!' });
+    } else if (req.method === 'GET') {
+        res.status(200).json(dados); // Retorna todos os dados cadastrados
     } else {
-        res.setHeader('Allow', ['POST']);
+        res.setHeader('Allow', ['POST', 'GET']);
         res.status(405).end(`Método ${req.method} não permitido`);
     }
 }

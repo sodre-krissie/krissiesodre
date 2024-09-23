@@ -3,15 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
    const form = document.getElementById('cadastro-form');
 
    form.addEventListener('submit', async (event) => {
-       event.preventDefault(); // Impede o comportamento padrão do formulário
+       event.preventDefault(); // Previne o comportamento padrão do formulário
 
        const formData = new FormData(form);
-       const data = {
-           disciplina: formData.get('disciplina'),
-           nova_disciplina: formData.get('nova_disciplina'),
-           pergunta: formData.get('pergunta'),
-           resposta: formData.get('resposta')
-       };
+       const data = Object.fromEntries(formData.entries());
 
        try {
            const response = await fetch('/api/saveData', {
@@ -22,15 +17,16 @@ document.addEventListener('DOMContentLoaded', () => {
                body: JSON.stringify(data),
            });
 
-           if (response.ok) {
-               alert('Dados cadastrados com sucesso!');
-               form.reset(); // Reseta o formulário após o sucesso
-           } else {
-               alert('Erro ao cadastrar os dados.');
+           if (!response.ok) {
+               throw new Error('Erro ao cadastrar os dados');
            }
+
+           alert('Dados cadastrados com sucesso!');
+           form.reset(); // Reseta o formulário após o envio
+
        } catch (error) {
-           console.error('Erro:', error);
-           alert('Erro na requisição. Veja o console para mais detalhes.');
+           console.error(error);
+           alert('Erro ao cadastrar os dados.');
        }
    });
 });
