@@ -1,21 +1,5 @@
 // /api/getData.js
-let dados = [
-   {
-      "disciplina": "Nutrição",
-      "pergunta": "TEste",
-      "resposta": "Teste"
-  },
-  {
-      "disciplina": "Nutrição",
-      "pergunta": "O ",
-      "resposta": "Eu "
-  },
-  {
-   "disciplina": "Nutrição",
-   "pergunta": "1 ",
-   "resposta": "2 "
-}
-]; // Simulação de um banco de dados em memória
+let dados = []; // Simulação de um banco de dados em memória
 
 export default function handler(req, res) {
     if (req.method === 'POST') {
