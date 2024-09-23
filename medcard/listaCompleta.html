@@ -7,12 +7,14 @@
    <link rel="shortcut icon" type="image/x-icon" href="/medcard/assets/img/simbolo-3.png"/>
    <link rel="stylesheet" type="text/css" href="/view/css/reset.css">
    <link rel="stylesheet" type="text/css" href="/medcard/assets/css/style.css">
+
+   <script src="/medcard/assets/js/listaCompleta.js" defer></script>
 </head>
 <body>
    <h1>Dados Cadastrados</h1>
    <ul id="lista-dados"></ul>
 
-   <script>
+   <!-- <script>
        async function carregarDados() {
            const response = await fetch('/api/getData');
            const dados = await response.json();
@@ -29,6 +31,6 @@
 
        // Carregar os dados quando a página for carregada
        window.onload = carregarDados;
-   </script>
+   </script> -->
 </body>
 </html>

@@ -1,28 +1,25 @@
-// /assets/js/listaCompleta.js
+// /medcard/assets/js/listaCompleta.js
 document.addEventListener('DOMContentLoaded', async () => {
+   const listaDados = document.getElementById('lista-dados');
+
    try {
-      const response = await fetch('/api/getData');
-      if (!response.ok) {
-         throw new Error('Erro ao buscar dados: ' + response.statusText);
-      }
+       const response = await fetch('/api/getData');
+       if (!response.ok) throw new Error('Erro ao buscar os dados.');
 
-      const dados = await response.json();
-      const lista = document.getElementById('lista-cadastrados');
+       const dados = await response.json();
 
-      // Verifique se dados não estão vazios
-      if (dados.length === 0) {
-         const li = document.createElement('li');
-         li.textContent = 'Nenhum dado cadastrado.';
-         lista.appendChild(li);
-         return;
-      }
-
-      dados.forEach(item => {
-         const li = document.createElement('li');
-         li.textContent = `Disciplina: ${item.disciplina}, Pergunta: ${item.pergunta}, Resposta: ${item.resposta}`;
-         lista.appendChild(li);
-      });
+       // Verifica se há dados e os adiciona à lista
+       if (dados.length > 0) {
+           dados.forEach(item => {
+               const li = document.createElement('li');
+               li.textContent = `Disciplina: ${item.disciplina}, Pergunta: ${item.pergunta}, Resposta: ${item.resposta}`;
+               listaDados.appendChild(li);
+           });
+       } else {
+           listaDados.innerHTML = '<li>Nenhum dado cadastrado.</li>';
+       }
    } catch (error) {
-      console.error('Erro:', error);
+       console.error('Erro:', error);
+       listaDados.innerHTML = '<li>Erro ao carregar os dados.</li>';
    }
 });
