@@ -11,6 +11,23 @@
    
       <!-- Favicon inicia -->
       <link rel="shortcut icon" type="image/x-icon" href="/medcard/assets/img/simbolo-3.png" class="ks-favicon"/>
+
+      <script>
+         // cadastroCard.js
+document.addEventListener('DOMContentLoaded', () => {
+   const form = document.getElementById('cadastro-form');
+
+   if (form) {
+       form.addEventListener('submit', (event) => {
+           event.preventDefault();
+           // Seu código para processar o formulário aqui
+       });
+   } else {
+       console.error('Formulário não encontrado!');
+   }
+});
+
+      </script>
    </head>
    <body>
       <h1>Cadastro</h1>
@@ -34,6 +51,6 @@
          <button type="submit">Cadastrar</button>
       </form>
       <!-- JS deve estar aqui, antes do fechamento do body -->
-      <script src="/medcard/assets/js/cadastroCard.js"></script>
+      <!-- <script src="/medcard/assets/js/cadastroCard.js"></script> -->
    </body>
 </html>
