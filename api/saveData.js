@@ -4,7 +4,7 @@ let dados = []; // Simulação de um banco de dados em memória
 export default function handler(req, res) {
     if (req.method === 'POST') {
         const { disciplina, nova_disciplina, pergunta, resposta } = req.body;
-        
+
         // Adiciona os dados ao array
         dados.push({
             disciplina: nova_disciplina || disciplina,
@@ -12,9 +12,7 @@ export default function handler(req, res) {
             resposta
         });
 
-        // Adicionando o log aqui
         console.log('Dados recebidos:', { disciplina, nova_disciplina, pergunta, resposta });
-
         res.status(201).json({ message: 'Dados cadastrados com sucesso!' });
     } else {
         res.setHeader('Allow', ['POST']);

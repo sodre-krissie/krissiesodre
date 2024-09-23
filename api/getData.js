@@ -1,5 +1,5 @@
 // /api/getData.js
-let dados = []; // Aqui deve ser o mesmo array que você usa em saveData.js
+let dados = []; // Esse array deve ser compartilhado com saveData.js, se possível
 
 export default function handler(req, res) {
     if (req.method === 'GET') {
