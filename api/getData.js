@@ -1,5 +1,9 @@
 // /api/getData.js
-let dados = []; // Simulação de um banco de dados em memória
+let dados = [
+   { disciplina: "Nutrição", pergunta: "Qual é a importância da alimentação?", resposta: "A alimentação é essencial para a saúde." },
+   { disciplina: "Educação Física", pergunta: "Qual a função do exercício?", resposta: "Manter a saúde física e mental." }
+];
+
 
 export default function handler(req, res) {
    if (req.method === 'GET') {
