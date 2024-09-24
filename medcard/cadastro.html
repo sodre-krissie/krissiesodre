@@ -10,22 +10,28 @@
     <link rel="shortcut icon" type="image/x-icon" href="/medcard/assets/img/simbolo-3.png"/>
 </head>
 <body>
-    <h1>Cadastro</h1>
-    <form id="cadastro-form">
-        <span>Selecione a disciplina</span>
-        <select name="disciplina" id="disciplina">
-            <option value="Nutrição">Nutrição</option>
-            <option value="Outro">Outro</option>
-        </select>
+    <!-- <div class="overlayPink" tabindex="-1"></div> -->
+    <div class="blcContent">
+        <h1>Cadastro de Flashcard</h1>
+        <form id="cadastro-form">
+            <span>Selecione a disciplina</span>
+            <select name="disciplina" id="disciplina">
+                <option value="Nutrição">Nutrição</option>
+                <option value="Outro">Outro</option>
+            </select>
 
-        <span>Cadastrar Pergunta</span>
-        <input type="text" name="pergunta" placeholder="Digite a pergunta" maxlength="100" required>
+            <span>Cadastrar Pergunta</span>
+            <input type="text" name="pergunta" placeholder="Digite a pergunta" maxlength="100" required>
 
-        <span>Cadastrar Resposta</span>
-        <input type="text" name="resposta" placeholder="Digite a resposta" maxlength="100" required>
-
-        <button type="reset">Cancelar</button>
-        <button type="submit">Cadastrar</button>
-    </form>
+            <span>Cadastrar Resposta</span>
+            <input type="text" name="resposta" placeholder="Digite a resposta" maxlength="100" required>            
+            
+        </form>
+        <div class="blcFlexRow">
+            <button type="reset" class="btnSecundary">Cancelar</button>
+            <button type="submit" class="btnPrimary">Cadastrar</button>
+        </div>
+    </div>
+    
 </body>
 </html>
