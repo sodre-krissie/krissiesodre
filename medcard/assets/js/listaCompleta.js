@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                        <td>${item.pergunta}</td>
                        <td>${item.resposta}</td>
                        <td>
-                           <button class="btn-edit" data-index="${index}">Editar</button>
-                           <button class="btn-delete" data-index="${index}">Excluir</button>
+                           <button class="btn-edit" data-index="${index}"><i class="ph ph-pencil-simple-line"></i></button>
+                           <button class="btn-delete" data-index="${index}"><i class="ph ph-trash"></i></button>
                        </td>
                    `;
 
