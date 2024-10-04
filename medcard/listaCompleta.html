@@ -17,6 +17,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,25 +25,29 @@
     <link rel="stylesheet" type="text/css" href="/view/css/reset.css">
     <link rel="stylesheet" type="text/css" href="/medcard/assets/css/style.css">
     <script src="/medcard/assets/js/listaCompleta.js" defer></script>
-    <link rel="shortcut icon" type="image/x-icon" href="/medcard/assets/img/simbolo-3.png"/>
+    <link rel="shortcut icon" type="image/x-icon" href="/medcard/assets/img/simbolo-3.png" />
 </head>
+
 <body>
-    <h1>Lista Completa</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Disciplina</th>
-                <th>Pergunta</th>
-                <th>Resposta</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody id="lista-dados">
-            <tr>
-                <td colspan="4">Nenhum dado cadastrado.</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="blcContent">
+        <h1>Lista Completa</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Disciplina</th>
+                    <th>Pergunta</th>
+                    <th>Resposta</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="lista-dados">
+                <tr>
+                    <td colspan="4">Nenhum dado cadastrado.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
     <!-- Modal para edição -->
     <div id="editModal" style="display:none;">
         <h2>Editar Item</h2>
@@ -59,4 +64,5 @@
         </form>
     </div>
 </body>
+
 </html>
