@@ -47,5 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Erro:', error);
             showMessage('Erro ao cadastrar os dados.', true);
         }
+        if (!response.ok) {
+            console.error('Erro ao cadastrar os dados:', await response.text());
+            throw new Error('Erro ao cadastrar os dados.');
+        }
     });
 });

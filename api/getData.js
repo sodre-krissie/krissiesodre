@@ -6,22 +6,16 @@ const filePath = path.join(process.cwd(), 'medcard', 'assets', 'json', 'dados.js
 
 // Função para ler os dados do arquivo JSON com tratamento de erro
 async function lerDados() {
-    try {
-        const dadosJson = await fs.readFile(filePath, 'utf-8');
-        return JSON.parse(dadosJson);
-    } catch (error) {
-        if (error.code === 'ENOENT') {
-            await escreverDados([]); // Se o arquivo não existir, cria um novo
-            return [];
-        } else {
-            throw error; // Repassa o erro se for outro
-        }
-    }
+    const dadosJson = await fs.readFile(filePath, 'utf-8');
+    console.log('Dados lidos do arquivo JSON:', dadosJson); // Debug
+    return JSON.parse(dadosJson);
 }
 
 // Função para escrever os dados no arquivo JSON
 async function escreverDados(dados) {
+    console.log('Escrevendo dados no arquivo JSON:', dados); // Debug
     await fs.writeFile(filePath, JSON.stringify(dados, null, 2), 'utf-8');
+    console.log('Dados escritos com sucesso!'); // Debug
 }
 
 // Centralização de tratamento de erros
