@@ -12,19 +12,20 @@
 <body>
     <!-- <div class="overlayPink" tabindex="-1"></div> -->
     <div class="blcContent">
+        <img class="imgLogoForm" src="/medcard/assets/img/Capullo_lg2.png" onclick="location.href='/medcard/index.html'">
         <h1>Cadastro de Flashcard</h1>
         <form id="cadastro-form">
             <span>Selecione a disciplina</span>
-            <select name="disciplina" id="disciplina">
+            <select name="disciplina" id="disciplina" class="formControl">
                 <option value="Nutrição">Nutrição</option>
                 <option value="Outro">Outro</option>
             </select>
 
             <span>Cadastrar Pergunta</span>
-            <input type="text" name="pergunta" placeholder="Digite a pergunta" maxlength="100" required>
+            <input class="formControl" type="text" name="pergunta" placeholder="Digite a pergunta" maxlength="100">
 
             <span>Cadastrar Resposta</span>
-            <input type="text" name="resposta" placeholder="Digite a resposta" maxlength="100" required>            
+            <input class="formControl" type="text" name="resposta" placeholder="Digite a resposta" maxlength="100" required>            
             
         </form>
         <div class="blcFlexRow">

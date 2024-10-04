@@ -138,9 +138,50 @@ button.btnSecundary:hover{
    border-color: var(--cor-PrimariaHover);
 }
 
+/* 4 - Forms & Inputs */
+form#cadastro-form{
+   width: calc(100% - 48px);
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
+}
+
+.blcContent .blcFlexRow{
+   margin-top: 54px;
+}
+
+.formControl{
+   width: 100%;
+   margin: 0;
+   padding: 8px 16px;
+   font-size: 14px;
+   border-radius: 4px;
+   background: var(--color-bg);
+   border: 1px var(--color-bg);
+}
+
+select.formControl{
+   width: calc(100% + 16px + 16px);
+}
+
+select:focus, .formControl:focus{
+   outline: 1px solid var(--cor-Primaria);
+}
+
 /* 6 - Textos */
 h1{
    text-transform: uppercase;
    font-size: 20px;
    font-weight: 600;
+}
+
+#cadastro-form span{
+   font-size: 16px;
+   font-weight: 400;
+}
+
+/* 7 - Imagem */
+img.imgLogoForm{
+   width: 50%;
+   cursor: pointer;
 }
