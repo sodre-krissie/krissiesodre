@@ -1,55 +1,34 @@
 // /medcard/assets/js/cadastroCard.js
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('cadastro-form');
-    const messageBox = document.getElementById('message-box'); // Para mensagens de feedback
+   const form = document.getElementById('cadastro-form');
 
-    // Função para exibir mensagens de sucesso ou erro
-    function showMessage(message, isError = false) {
-        messageBox.textContent = message;
-        messageBox.style.color = isError ? 'red' : 'green';
-        messageBox.style.display = 'block';
+   form.addEventListener('submit', async (event) => {
+       event.preventDefault(); // Previne o envio padrão do formulário
 
-        setTimeout(() => {
-            messageBox.style.display = 'none';
-        }, 3000);
-    }
+       const formData = new FormData(form);
+       const data = {
+           disciplina: formData.get('disciplina'),
+           pergunta: formData.get('pergunta'),
+           resposta: formData.get('resposta')
+       };
 
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Previne o envio padrão do formulário
+       try {
+           const response = await fetch('/api/getData', {
+               method: 'POST',
+               headers: {
+                   'Content-Type': 'application/json',
+               },
+               body: JSON.stringify(data),
+           });
 
-        const formData = new FormData(form);
-        const data = {
-            disciplina: formData.get('disciplina').trim(),
-            pergunta: formData.get('pergunta').trim(),
-            resposta: formData.get('resposta').trim(),
-        };
+           if (!response.ok) throw new Error('Erro ao cadastrar os dados.');
 
-        // Validação de dados no frontend
-        if (!data.disciplina || !data.pergunta || !data.resposta) {
-            showMessage('Todos os campos são obrigatórios.', true);
-            return;
-        }
-
-        try {
-            const response = await fetch('/api/getData', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-
-            if (!response.ok) throw new Error('Erro ao cadastrar os dados.');
-
-            form.reset(); // Limpa o formulário
-            showMessage('Dados cadastrados com sucesso!');
-        } catch (error) {
-            console.error('Erro:', error);
-            showMessage('Erro ao cadastrar os dados.', true);
-        }
-        if (!response.ok) {
-            console.error('Erro ao cadastrar os dados:', await response.text());
-            throw new Error('Erro ao cadastrar os dados.');
-        }
-    });
+           const result = await response.json();
+           alert(result.message); // Exibe a mensagem de sucesso
+           form.reset(); // Reseta o formulário
+       } catch (error) {
+           console.error('Erro:', error);
+           alert('Erro ao cadastrar os dados.');
+       }
+   });
 });
