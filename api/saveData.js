@@ -46,3 +46,5 @@ export default async function handler(req, res) {
         res.status(405).end(`Method ${req.method} Not Allowed`);
     }
 }
+
+console.log(process.env.DB_USER, process.env.DB_HOST, process.env.DB_NAME, process.env.DB_PORT);
