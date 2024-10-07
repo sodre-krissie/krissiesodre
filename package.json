@@ -1,0 +1,24 @@
+{
+  "name": "krissiesodre",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sodre-krissie/krissiesodre.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sodre-krissie/krissiesodre/issues"
+  },
+  "homepage": "https://github.com/sodre-krissie/krissiesodre#readme",
+  "dependencies": {
+    "pg": "^8.13.0"
+  },
+  "type": "module" // Adiciona esta linha
+}
