@@ -1,6 +1,11 @@
 <?php
 // saveFlashcard.php
 
+// Define o cabeçalho para permitir o acesso ao recurso
+header("Access-Control-Allow-Origin: *"); // Ajuste isso conforme necessário
+header("Access-Control-Allow-Methods: POST");
+header("Content-Type: application/json");
+
 // Verifica se a requisição é POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Obtém os dados JSON enviados
@@ -17,11 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         echo json_encode(['message' => 'Flashcard cadastrado com sucesso!']);
     } else {
-        echo json_encode(['message' => 'Dados incompletos.'], JSON_PRETTY_PRINT);
+        echo json_encode(['message' => 'Dados incompletos.']);
     }
 } else {
     // Método não permitido
-    header("HTTP/1.1 405 Method Not Allowed");
+    http_response_code(405); // 405 Method Not Allowed
     echo json_encode(['message' => 'Método não permitido.']);
 }
 ?>
