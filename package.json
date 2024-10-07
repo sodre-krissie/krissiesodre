@@ -20,5 +20,5 @@
   "dependencies": {
     "pg": "^8.13.0"
   },
-  "type": "module" // Adiciona esta linha para permitir a sintaxe de módulos ES
+  "type": "module"
 }
