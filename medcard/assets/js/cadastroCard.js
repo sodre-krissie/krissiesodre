@@ -8,7 +8,7 @@ document.getElementById('cadastro-form').addEventListener('submit', async (event
     const resposta = document.getElementById('resposta').value;
 
     try {
-        const response = await fetch('https://krissiesodre.vercel.app/api/saveFlashcard', {
+        const response = await fetch('https://krissiesodre.vercel.app/api/saveFlashcard.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
