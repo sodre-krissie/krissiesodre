@@ -6,36 +6,34 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
         const { disciplina, pergunta, resposta } = req.body;
 
+        // Validação básica
         if (!disciplina || !pergunta || !resposta) {
-            console.error('Erro: Campos obrigatórios não preenchidos.');
             return res.status(400).json({ message: 'Todos os campos são obrigatórios.' });
         }
 
+        // Configuração do cliente PostgreSQL com dados reais
         const client = new Client({
-            user: process.env.DB_USER,
-            host: process.env.DB_HOST,
-            database: process.env.DB_NAME,
-            password: process.env.DB_PASSWORD,
-            port: parseInt(process.env.DB_PORT, 10),
+            user: 'postgres',          // Substitua pelo seu usuário do PostgreSQL
+            host: 'possessively-glad-sponge.data-1.use1.tembo.io',              // Substitua pelo host do seu banco de dados (ex: 'localhost' ou um IP)
+            database: 'flashcardMed', // Substitua pelo nome do seu banco de dados
+            password: 'Dz12t2WDnl5rY3ji',         // Substitua pela sua senha do PostgreSQL
+            port: 5432,                    // A porta padrão do PostgreSQL é 5432
         });
 
         try {
             await client.connect();
             console.log('Conexão com o banco de dados estabelecida.');
 
-            // Teste de conexão
-            const nowResult = await client.query('SELECT NOW()');
-            console.log('Hora atual do banco de dados:', nowResult.rows[0]);
-
+            console.log('Dados recebidos para inserção:', { disciplina, pergunta, resposta });
+            
             await client.query(
                 'INSERT INTO flashcards (disciplina, pergunta, resposta) VALUES ($1, $2, $3)',
                 [disciplina, pergunta, resposta]
             );
 
-            console.log('Flashcard cadastrado com sucesso.');
             res.status(201).json({ message: 'Flashcard cadastrado com sucesso!' });
         } catch (error) {
-            console.error('Erro na função API:', error.message, error.stack);
+            console.error('Erro na função API:', error.message);
             res.status(500).json({ message: 'Erro ao cadastrar flashcard', error: error.toString() });
         } finally {
             await client.end();
