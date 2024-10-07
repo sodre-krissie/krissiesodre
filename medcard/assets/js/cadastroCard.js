@@ -1,5 +1,4 @@
 // /medcard/assets/js/cadastroCard.js
-
 document.getElementById('cadastro-form').addEventListener('submit', async (event) => {
     event.preventDefault();
 
