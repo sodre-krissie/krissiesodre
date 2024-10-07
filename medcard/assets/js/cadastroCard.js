@@ -1,7 +1,5 @@
-// /medcard/assets/js/cadastroCard.js
-// /medcard/assets/js/cadastroCard.js
 document.getElementById('cadastro-form').addEventListener('submit', async (event) => {
-    event.preventDefault(); // Evitar o envio padrão do formulário
+    event.preventDefault();
 
     const formData = new FormData(event.target);
     const data = {
@@ -16,13 +14,18 @@ document.getElementById('cadastro-form').addEventListener('submit', async (event
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data), // Enviar os dados como JSON
+            body: JSON.stringify(data),
         });
 
+        if (!response.ok) {
+            const errorText = await response.text(); // Pegue o texto da resposta
+            throw new Error(errorText); // Lançar um erro se a resposta não for ok
+        }
+
         const result = await response.json();
-        alert(result.message); // Mostrar mensagem de sucesso ou erro
+        alert(result.message);
     } catch (error) {
         console.error('Erro ao enviar dados:', error);
-        alert('Erro ao cadastrar flashcard');
+        alert('Erro ao cadastrar flashcard: ' + error.message); // Mostre a mensagem do erro
     }
 });
