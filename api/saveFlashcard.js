@@ -1,6 +1,7 @@
 // /api/saveFlashcard.js
 
-import { Client } from 'pg'; // ou o driver que você está utilizando
+import pkg from 'pg';
+const { Client } = pkg; // Desestruturação para obter o Client
 
 const client = new Client({
     user: process.env.DB_USER,
@@ -15,21 +16,20 @@ export default async function handler(req, res) {
         const { disciplina, pergunta, resposta } = req.body;
 
         try {
-            await client.connect(); // Conectando ao banco de dados
+            await client.connect();
 
             const query = 'INSERT INTO cad_flashcard (disciplina, pergunta, resposta) VALUES ($1, $2, $3)';
             const values = [disciplina, pergunta, resposta];
 
-            await client.query(query, values); // Executando a query
-            await client.end(); // Encerrando a conexão
+            await client.query(query, values);
+            await client.end();
 
             res.status(200).json({ message: 'Flashcard cadastrado com sucesso!' });
         } catch (error) {
-            console.error('Error inserting flashcard:', error);
-            res.status(500).json({ message: 'Erro ao cadastrar flashcard' });
+            console.error('Error inserting flashcard:', error); // Log do erro para diagnóstico
+            res.status(500).json({ message: 'Erro ao cadastrar flashcard', error: error.message });
         }
     } else {
-        // Método não permitido
         res.setHeader('Allow', ['POST']);
         res.status(405).end(`Method ${req.method} Not Allowed`);
     }

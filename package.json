@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/sodre-krissie/krissiesodre#readme",
   "dependencies": {
+    "curl": "^0.1.4",
     "pg": "^8.13.0"
   },
   "type": "module"
