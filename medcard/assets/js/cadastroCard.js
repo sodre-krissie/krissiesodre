@@ -1,5 +1,5 @@
 document.getElementById('cadastro-form').addEventListener('submit', async (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Impede o envio padrão do formulário
 
     const formData = new FormData(event.target);
     const data = {
@@ -18,14 +18,13 @@ document.getElementById('cadastro-form').addEventListener('submit', async (event
         });
 
         if (!response.ok) {
-            const errorText = await response.text(); // Pegue o texto da resposta
-            throw new Error(errorText); // Lançar um erro se a resposta não for ok
+            throw new Error('Erro ao enviar dados');
         }
 
         const result = await response.json();
-        alert(result.message);
+        alert(result.message); // Exibir mensagem de sucesso
     } catch (error) {
         console.error('Erro ao enviar dados:', error);
-        alert('Erro ao cadastrar flashcard: ' + error.message); // Mostre a mensagem do erro
+        alert('Erro ao enviar dados: ' + error.message); // Exibir mensagem de erro
     }
 });

@@ -15,15 +15,15 @@ export default async function handler(req, res) {
 
         try {
             await client.connect();
-            const result = await client.query(
+            await client.query(
                 'INSERT INTO flashcards (disciplina, pergunta, resposta) VALUES ($1, $2, $3)',
                 [disciplina, pergunta, resposta]
             );
 
-            res.status(200).json({ message: 'Flashcard cadastrado com sucesso!' }); // Certifique-se de que isso está correto
+            res.status(200).json({ message: 'Flashcard cadastrado com sucesso!' });
         } catch (error) {
-            console.error('Erro ao cadastrar flashcard:', error);
-            res.status(500).json({ message: 'Erro ao cadastrar flashcard' }); // Retorne um JSON válido
+            console.error('Erro na função API:', error);
+            res.status(500).json({ message: 'Erro ao cadastrar flashcard', error: error.message });
         } finally {
             await client.end();
         }
