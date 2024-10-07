@@ -1,6 +1,9 @@
 import { Client } from 'pg';
 
 export default async function handler(req, res) {
+    // Logando a requisição para verificar os dados recebidos
+    console.log('Recebendo dados:', req.body);
+
     // Verifica se a requisição é do tipo POST
     if (req.method === 'POST') {
         const { disciplina, pergunta, resposta } = req.body;
@@ -22,6 +25,7 @@ export default async function handler(req, res) {
         try {
             // Conecta ao banco de dados
             await client.connect();
+            console.log('Conexão com o banco de dados estabelecida.');
 
             // Insere os dados na tabela 'flashcards'
             await client.query(
@@ -35,10 +39,11 @@ export default async function handler(req, res) {
             // Log do erro no console
             console.error('Erro na função API:', error);
             // Retorna uma resposta de erro
-            res.status(500).json({ message: 'Erro ao cadastrar flashcard', error: error.message });
+            res.status(500).json({ message: 'Erro ao cadastrar flashcard', error: error.toString() });
         } finally {
             // Garante que a conexão seja encerrada
             await client.end();
+            console.log('Conexão com o banco de dados encerrada.');
         }
     } else {
         // Responde com um erro se o método não for permitido
@@ -46,5 +51,3 @@ export default async function handler(req, res) {
         res.status(405).end(`Method ${req.method} Not Allowed`);
     }
 }
-
-console.log(process.env.DB_USER, process.env.DB_HOST, process.env.DB_NAME, process.env.DB_PORT);
