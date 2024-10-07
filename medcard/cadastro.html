@@ -17,23 +17,25 @@
         <h1>Cadastro de Flashcard</h1>
         <form id="cadastro-form">
             <span>Selecione a disciplina</span>
-            <select name="disciplina" id="disciplina" class="formControl">
+            <select name="disciplina" id="disciplina" class="formControl" required>
+                <option value="" disabled selected>Selecione uma disciplina</option>
                 <option value="Nutrição">Nutrição</option>
                 <option value="Histologia">Histologia</option>
                 <option value="Outro">Outro</option>
             </select>
         
             <span>Cadastrar Pergunta</span>
-            <input class="formControl" type="text" name="pergunta" placeholder="Digite a pergunta" maxlength="100">
+            <input class="formControl" type="text" name="pergunta" id="pergunta" placeholder="Digite a pergunta" maxlength="100" required>
         
             <span>Cadastrar Resposta</span>
-            <input class="formControl" type="text" name="resposta" placeholder="Digite a resposta" maxlength="100" required>            
+            <input class="formControl" type="text" name="resposta" id="resposta" placeholder="Digite a resposta" maxlength="100" required>
         
             <div class="blcFlexRow">
-                <button type="reset" class="btnSecundary">Cancelar</button>
+                <button type="button" class="btnSecundary" onclick="document.getElementById('cadastro-form').reset();">Cancelar</button>
                 <button type="submit" class="btnPrimary">Cadastrar</button>
             </div>
         </form>
+        
         
     </div>
     

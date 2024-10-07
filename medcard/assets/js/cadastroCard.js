@@ -1,12 +1,9 @@
-document.getElementById('cadastro-form').addEventListener('submit', async (event) => {
-    event.preventDefault(); // Impede o envio padrão do formulário
+document.getElementById('cadastro-form').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Evita o envio padrão do formulário
 
-    const formData = new FormData(event.target);
-    const data = {
-        disciplina: formData.get('disciplina'),
-        pergunta: formData.get('pergunta'),
-        resposta: formData.get('resposta'),
-    };
+    const disciplina = document.getElementById('disciplina').value;
+    const pergunta = document.getElementById('pergunta').value;
+    const resposta = document.getElementById('resposta').value;
 
     try {
         const response = await fetch('/api/saveData', {
@@ -14,17 +11,16 @@ document.getElementById('cadastro-form').addEventListener('submit', async (event
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify({ disciplina, pergunta, resposta }), // Certifique-se de enviar um objeto JSON
         });
 
         if (!response.ok) {
-            throw new Error('Erro ao enviar dados');
+            throw new Error(`Erro ao enviar dados: ${response.statusText}`);
         }
 
-        const result = await response.json();
-        alert(result.message); // Exibir mensagem de sucesso
+        const data = await response.json();
+        console.log('Dados enviados com sucesso:', data);
     } catch (error) {
         console.error('Erro ao enviar dados:', error);
-        alert('Erro ao enviar dados: ' + error.message); // Exibir mensagem de erro
     }
 });

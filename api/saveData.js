@@ -7,6 +7,7 @@ export default async function handler(req, res) {
         const { disciplina, pergunta, resposta } = req.body;
 
         if (!disciplina || !pergunta || !resposta) {
+            console.error('Erro: Campos obrigatórios não preenchidos.');
             return res.status(400).json({ message: 'Todos os campos são obrigatórios.' });
         }
 
@@ -23,13 +24,15 @@ export default async function handler(req, res) {
             console.log('Conexão com o banco de dados estabelecida.');
 
             // Teste de conexão
-            await client.query('SELECT NOW()');
+            const nowResult = await client.query('SELECT NOW()');
+            console.log('Hora atual do banco de dados:', nowResult.rows[0]);
 
             await client.query(
                 'INSERT INTO flashcards (disciplina, pergunta, resposta) VALUES ($1, $2, $3)',
                 [disciplina, pergunta, resposta]
             );
 
+            console.log('Flashcard cadastrado com sucesso.');
             res.status(201).json({ message: 'Flashcard cadastrado com sucesso!' });
         } catch (error) {
             console.error('Erro na função API:', error.message, error.stack);
